@@ -1,7 +1,11 @@
 # liuqin 缺失源码核对
 
 本次目标：补齐 `hwid`、`plaid`、厂商模块，安装配置指定的 Android Clang。
-源码基线仍为 `liuqin-t-oss` / Linux 5.10.81。设备不在用户手边，实机信息暂不可取得。
+源码基线仍为 `liuqin-t-oss` / Linux 5.10.81。2026-11-04 设备接入后，已通过
+KernelSU ADB Root 取得 `project=16`、`hwid_value=589824`，并从当前 vendor_boot
+提取真实 `hwid.ko`，但对应源码仍缺失。当前内核为 5.10.236，抽取模块的构建
+标记为 5.10.160；详见 [实机基线核对](DEVICE-BASELINE-2026-11-04.md)。
+下文社区参考和缺失源码的结论继续保留，早期权限失败不能代替此次 Root 采集结果。
 
 ## 源码状态
 

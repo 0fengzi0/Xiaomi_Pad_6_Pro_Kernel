@@ -2,8 +2,73 @@
   "schemaVersion": 1,
   "checkedOn": "2026-11-04",
   "device": "Xiaomi Pad 6 Pro (liuqin)",
-  "targetSystem": "HyperOS 3.0.7.0 (user reported; Android version and build suffix unverified)",
+  "targetSystem": "Android 15 / HyperOS OS3.0.7.0.VMYCNXM (ADB verified 2026-11-04)",
+  "deviceBaselineReport": "tools/liuqin/DEVICE-BASELINE-2026-11-04.md",
+  "runningKernel": "5.10.236-android12-9-00003-gfb24cf99ad97-ab14313284",
+  "vendorModuleVermagicRelease": "5.10.160-gki-gd28eeb36ae86",
+  "deviceRootProvider": "KernelSU; ADB Root verified; LKM user-confirmed and current ramdisk contains kernelsu.ko; kernel unchanged versus matching saved original",
+  "candidateGkiBaseline": {
+    "repository": "https://android.googlesource.com/kernel/common",
+    "revision": "fb24cf99ad973cd4c7c7fa375c6053f939ef3a89",
+    "kernelVersion": "5.10.236",
+    "kmiGeneration": 9,
+    "clang": "r416183b",
+    "status": "Official commit and build metadata verified; full checkout, build and new-kernel ABI validation not yet performed"
+  },
+  "matchingSavedOriginalBoot": {
+    "path": "work/dependencies/stock-boot-20261104/ksu-saved-original-boot-5.10.236.img",
+    "sha256": "9dd14961ae15aa10d162711d57972c5c62e7af23f2dabc22bac57b24bc185e4b",
+    "source": "Device KernelSU saved original; kernel matches current slot and embedded config matches running config; not independently matched against official ROM package"
+  },
+  "knownWorkingBootBackup": {
+    "path": "work/dependencies/stock-boot-20261104/current-boot-a.img",
+    "sha256": "16e9977e648f1519547412a8a9e4191d876f36862edaf7357590526a81181919",
+    "status": "Read-only current-slot backup, device/local SHA-256 matched; restoration not tested"
+  },
   "buildValidated": false,
+  "slotPartitionState": {
+    "checkedOn": "2026-11-04",
+    "currentSlot": "_a",
+    "boot_b": {
+      "bytes": 201326592,
+      "sha256": "46b23b74b0d431993099b9ccef75ac4e30dc48305089aa236b6ff1de97fed713",
+      "state": "blank (all zero bytes; never flashed)"
+    },
+    "vendor_boot_b": {
+      "bytes": 100663296,
+      "sha256": "425382d5857f04fc49585cabbdef6fc647472ee26f52c54caaaeaad17320b3f8",
+      "state": "differs from vendor_boot_a (752b7597...)"
+    },
+    "dtbo_a": {
+      "bytes": 25165824,
+      "sha256": "21376daf2630560a1b791b639703b4c9614b19ead265a3ab2e6866858dd5e2c0"
+    },
+    "dtbo_b": {
+      "bytes": 25165824,
+      "sha256": "95aeaae03b56c171cf88753c821630a3c24f1fcf406cec3e17d56781aa3f8369",
+      "state": "differs from dtbo_a"
+    },
+    "localArtifacts": "work/dependencies/device-baseline-20261104-222958/{boot_b,vendor_boot_b,dtbo_a,dtbo_b}.img (device staging cleaned)",
+    "flashTestConsequence": "Slot b cannot be booted as-is: it must first receive copies of vendor_boot_a and dtbo_a, then boot_b gets the new kernel, then set_active b. Rollback is set_active a; slot a is never written during the test."
+  },
+  "kmiBaseline": {
+    "generator": "tools/liuqin/extract-module-crcs.py",
+    "baselineJson": "tools/liuqin/baseline/symbol-crcs.json",
+    "generatedOn": "2026-11-04",
+    "moduleCount": 353,
+    "uniqueModulesBySha256": 353,
+    "importedSymbolCount": 3624,
+    "vendorProvidedSymbolCount": 2126,
+    "crcConflicts": 0,
+    "coverage": "415/416 loaded modules matched by modinfo name (kernelsu loads from boot ramdisk and is included); loaded-modules snapshot 2026-11-04",
+    "sources": [
+      "work/dependencies/device-baseline-20261104-222958/ramdisk-modules (352 .ko from vendor_boot vendor ramdisk)",
+      "work/dependencies/device-modules-20261104-234109/root/vendor_dlkm/lib/modules (310 .ko pulled via adb root)",
+      "work/dependencies/device-baseline-20261104-222958/ramdisk-selected/kernelsu.ko (from current boot ramdisk; no versioned imports, vermagic 5.10.252-dirty)"
+    ],
+    "collector": "tools/liuqin/collect-vendor-modules.sh (read-only; staged tar in /data/local/tmp removed after pull)",
+    "notes": "kernelsu.ko sha256 e3087aaba8897ecc3a43918e257b0e6441c401343295bbc09e20f763636fbd78 matches ramdisk-comparison.json; module vermagic release prefixes differ across the set and load because CONFIG_MODVERSIONS same_magic() ignores the release token; CRC agreement across all modules is the load contract for a rebuilt GKI kernel"
+  },
   "maintenanceSeries": "tools/liuqin/patches/2026-11-maintenance/manifest.json + tools/liuqin/patches/2026-11-batch2/manifest.json (19 patches total)",
   "validationReport": "tools/liuqin/MAINTENANCE-2026-11.md",
   "repositories": [
@@ -132,7 +197,7 @@
     "Community external vendor modules staged for comparison only; exact stock liuqin audio/camera/display BSP revisions and integration remain unresolved",
     "consolidate variant references common/build.config.gki_consolidate.aarch64 which no longer exists at the pinned current ACK common head (era skew); gki variant unaffected. Reproducing consolidate requires pinning common to an early-2022 android12-5.10 commit",
     "WSL /mnt/e file I/O proved unreliable in this environment (partial script reads, lost log writes); all verification runs from WSL ext4, artifacts copied back last",
-    "Target device kernel release, full ROM build identifier, vendor modules and KMI compatibility are not verified"
+    "Current device identity, HWID, seven module artifacts, matching KernelSU-saved original boot and LKM-preserved kernel verified in DEVICE-BASELINE-2026-11-04.md; independent official ROM image digest, complete vendor BSP sources and any newly built kernel's KMI compatibility remain unverified"
   ],
   "referenceSources": [
     {

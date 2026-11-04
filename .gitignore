@@ -170,3 +170,6 @@ drivers/misc/hwid/
 
 # Locally synchronized external kernel resources
 /work/dependencies/
+
+
+boot.img
