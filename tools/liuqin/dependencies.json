@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-11-04",
+  "device": "Xiaomi Pad 6 Pro (liuqin)",
+  "targetSystem": "HyperOS 3.0.7.0 (user reported; Android version and build suffix unverified)",
+  "buildValidated": false,
+  "maintenanceSeries": "tools/liuqin/patches/2026-11-maintenance/manifest.json + tools/liuqin/patches/2026-11-batch2/manifest.json (19 patches total)",
+  "validationReport": "tools/liuqin/MAINTENANCE-2026-11.md",
+  "repositories": [
+    {
+      "name": "xiaomi-kernel",
+      "path": ".",
+      "url": "https://github.com/MiCode/Xiaomi_Kernel_OpenSource.git",
+      "branch": "liuqin-t-oss",
+      "revision": "eb49e10028e27fa98856cb5e458c0f0ec5b4554e",
+      "role": "Kernel source baseline, Linux 5.10.81; local maintenance backports tracked separately"
+    },
+    {
+      "name": "xiaomi-devicetree",
+      "path": "arch/arm64/boot/dts/vendor",
+      "url": "https://github.com/MiCode/kernel_devicetree.git",
+      "branch": "liuqin-t-oss",
+      "revision": "1c507816ba8aa6117dcec41f577ef7a66d2091f7",
+      "role": "Device tree in the path consumed by kernel Kbuild"
+    },
+    {
+      "name": "xiaomi-wlan",
+      "path": "work/dependencies/wlan",
+      "url": "https://github.com/MiCode/vendor_qcom_opensource_wlan.git",
+      "branch": "liuqin-t-oss",
+      "revision": "50782ba78f15238ed526b6064ecfc38d250eb96b",
+      "role": "Staged external source; not yet integrated into a build"
+    },
+    {
+      "name": "android-build",
+      "path": "work/dependencies/android-build",
+      "url": "https://android.googlesource.com/kernel/build",
+      "branch": "master-kernel-build-2021",
+      "revision": "dbfab7e0de2e04316b526ef938b1140d7a5fd40d",
+      "role": "Staged build scripts from the matching ACK manifest; not a complete build environment"
+    },
+    {
+      "name": "sm8450-modules-reference",
+      "path": "work/dependencies/sm8450-modules-reference",
+      "url": "https://github.com/Sickyman678/android_kernel_xiaomi_sm8450-modules.git",
+      "branch": "evox-a16",
+      "revision": "0df8f5c6d8e85458f9f6cf49dff9aa60d0474989",
+      "role": "Reference only: newer community vendor modules, not integrated or verified compatible with liuqin stock BSP; see SOURCE-RECOVERY-2026-11.md"
+    },
+    {
+      "name": "ack-common",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/common",
+      "url": "https://android.googlesource.com/kernel/common",
+      "branch": "android12-5.10",
+      "revision": "c55664ffabc21968048951a4f3dbfe860173548c",
+      "role": "ACK kernel source in the build workspace; provides build.config inheritance for the msm build; current branch head (SUBLEVEL 270 era)"
+    },
+    {
+      "name": "prebuilts-build-tools",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/prebuilts/build-tools",
+      "url": "https://android.googlesource.com/platform/prebuilts/build-tools",
+      "branch": "master-kernel-build-2021",
+      "revision": "cfedc16ec3deb680fca6fe2aff44a1837a97b50d",
+      "role": "Host coreutils/make/flex/python prebuilts referenced by build/build-tools symlinks"
+    },
+    {
+      "name": "prebuilts-kernel-build-tools",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/prebuilts/kernel-build-tools",
+      "url": "https://android.googlesource.com/kernel/prebuilts/build-tools",
+      "branch": "master-kernel-build-2021",
+      "revision": "ca5b087f88c0302ff66f59a6f26be663e92baf15",
+      "role": "Hermetic dtc 1.6.0-Android-build, depmod, avbtool, mkdtboimg.py, openssl headers/libs"
+    },
+    {
+      "name": "prebuilts-gcc-sysroot",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8",
+      "url": "https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8",
+      "branch": "master-kernel-build-2021",
+      "revision": "4e6f66acf138d40d9a80be24b275abb9c6eed729",
+      "role": "Hermetic host build sysroot (build/build-tools/sysroot symlink target)"
+    },
+    {
+      "name": "prebuilts-gas",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/prebuilts/gas/linux-x86",
+      "url": "https://android.googlesource.com/platform/prebuilts/gas/linux-x86",
+      "branch": "master-kernel-build-2021",
+      "revision": "b2a189331333e014bfef4c0425b3ef4b74accdd0",
+      "role": "GNU assembler referenced by msm build PATH; not tracked by ACK superproject, pinned at branch head 2026-11-04"
+    },
+    {
+      "name": "mkbootimg",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/tools/mkbootimg",
+      "url": "https://android.googlesource.com/platform/system/tools/mkbootimg",
+      "branch": "master-kernel-build-2021",
+      "revision": "34bc8bfb493401f7aadbd3b434f9fbfa521e9301",
+      "role": "Boot image pack/unpack tools (header v3/v4) used by build.sh defaults"
+    },
+    {
+      "name": "libufdt",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/tools/libufdt",
+      "url": "https://android.googlesource.com/platform/system/libufdt",
+      "branch": "master",
+      "revision": "9b70f594cf149c7c73989c78f03d210f8aa1c1f6",
+      "role": "ufdt overlay tools referenced by msm build PATH; not tracked by ACK superproject, pinned at master head 2026-11-04"
+    },
+    {
+      "name": "kernel-configs",
+      "path": "WSL:/var/tmp/liuqin-android12-5.10/kernel/configs",
+      "url": "https://android.googlesource.com/kernel/configs",
+      "branch": "master-kernel-build-2021",
+      "revision": "c10b7ea022edc356d37c092d7ca46bcb860f8a90",
+      "role": "ACK config fragments"
+    }
+  ],
+  "toolchain": {
+    "version": "clang-r416183b",
+    "clangVersion": "12.0.5",
+    "repository": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86",
+    "branch": "master-kernel-build-2021",
+    "repositoryRevision": "6e3223f76384455acde43affde3df0ea9df66c0d",
+    "installed": true,
+    "archiveUrl": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/6e3223f76384455acde43affde3df0ea9df66c0d/clang-r416183b.tar.gz",
+    "archiveSha256": "d84acd1183f49d25d7d54b4f8b01675a677aa531b53a87cce2c4919ac5ea56a8",
+    "archivePath": "work/dependencies/toolchains/clang-r416183b.tar.gz",
+    "linuxPath": "/var/tmp/liuqin-android12-5.10/prebuilts-master/clang/host/linux-x86/clang-r416183b",
+    "environment": "WSL Debian, Linux x86_64",
+    "validation": "Clang and LLD 12.0.5 executed; AArch64 object compilation and ThinLTO/CFI link passed; full kernel build not validated"
+  },
+  "upstreamManifest": "https://android.googlesource.com/kernel/manifest/+/refs/heads/common-android12-5.10/default.xml",
+  "unresolved": [
+    "Missing drivers/misc/hwid/Kconfig; drivers/misc/plaid is gitlink 80a977e60598fe47f66fac17a514a5daa4923df2 without a .gitmodules URL or checked-out source; still blocks msm-kernel (device) config generation",
+    "Community external vendor modules staged for comparison only; exact stock liuqin audio/camera/display BSP revisions and integration remain unresolved",
+    "consolidate variant references common/build.config.gki_consolidate.aarch64 which no longer exists at the pinned current ACK common head (era skew); gki variant unaffected. Reproducing consolidate requires pinning common to an early-2022 android12-5.10 commit",
+    "WSL /mnt/e file I/O proved unreliable in this environment (partial script reads, lost log writes); all verification runs from WSL ext4, artifacts copied back last",
+    "Target device kernel release, full ROM build identifier, vendor modules and KMI compatibility are not verified"
+  ],
+  "referenceSources": [
+    {
+      "name": "hwid-reference",
+      "path": "work/dependencies/hwid-reference",
+      "repository": "https://github.com/cupid-development/android_kernel_xiaomi_sm8450",
+      "revision": "060fed194023de6ed41cb25e9a15cfa307b05469",
+      "upstreamPath": "drivers/misc/hwid",
+      "status": "reference-only; missing HARDWARE_PROJECT_M81",
+      "files": [
+        {
+          "name": "Kconfig",
+          "sha256": "54567d32a975a81fc5fc78164fb50fb4a1ff2cb528ca26ececa7d2a67f6e5f66"
+        },
+        {
+          "name": "Makefile",
+          "sha256": "35e8935ef881114a1e7819a0031038c3c2ca7eb5deafdcea71919113bc146797"
+        },
+        {
+          "name": "hwid.c",
+          "sha256": "aef4297cb907fa8147d8c0d1edf804e5877542c73523d626b0a30c17dc939f7b"
+        },
+        {
+          "name": "hwid.h",
+          "sha256": "68d4ab9bc7d464505223b5513f314ffe3702a25034090f3f403943555f0dac35"
+        }
+      ]
+    },
+    {
+      "name": "hwid-legacy-reference",
+      "path": "work/dependencies/hwid-legacy-reference",
+      "repository": "https://github.com/xiaomi-sm8450-kernel/android_kernel_platform_msm-kernel",
+      "revision": "17deedc1d673d707672cb426036623f8f2216262",
+      "upstreamPath": "drivers/misc/hwid",
+      "status": "reference-only; older L2/L3 module-parameter implementation with sysfs; liuqin identity mapping unverified",
+      "files": [
+        {
+          "name": "Kconfig",
+          "sha256": "eff210ddf995d5595732aff8bf9b71134aca734515508b94efbdbde5e609c232"
+        },
+        {
+          "name": "Makefile",
+          "sha256": "35e8935ef881114a1e7819a0031038c3c2ca7eb5deafdcea71919113bc146797"
+        },
+        {
+          "name": "hwid.c",
+          "sha256": "d18c5f45d05a60632810c8764d6b65c735a5426517ac4e7d53b54a4cbb6d2690"
+        },
+        {
+          "name": "hwid.h",
+          "sha256": "975468570b8de909b82bad99263655531fd05d68beb4ddc3c30c5f40f427b9e0"
+        }
+      ]
+    }
+  ],
+  "sourceRecoveryReport": "tools/liuqin/SOURCE-RECOVERY-2026-11.md"
+}
